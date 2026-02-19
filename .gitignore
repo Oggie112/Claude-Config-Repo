@@ -19,7 +19,7 @@
 !/skills/**
 !/library/**
 
-# macOS
+# Windows
 .DS_Store
 
 chrome
