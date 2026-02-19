@@ -1,0 +1,197 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## David Ogden Claude Code Config
+
+---
+
+## Technical Overview
+
+**Languages:** TypeScript (primary), JavaScript ES2022+, Python (learning), C# (Learning)
+**Frontend:** React/Next.js preferred, Svelte/SvelteKit if required
+**Backend:** Node.js, Express, API design
+**Databases:** PostgreSQL, Supabase, MongoDB
+**Testing:** Testing is a known weakness. Some experience with Cypress & Jest
+**Tooling:** Git, VsCode, Vite, npm/pnpm/bun (project-specific, npm preferred)
+
+--- 
+
+## Communication
+
+- **No sycophancy.** No "Great question!" No hedging. Direct answers only.
+- **British English** — see spelling rules below
+- Clever humour welcome when it lands; forced humour isn't
+- Concrete examples over abstract explanations
+- Explicit over implicit 
+- Don't pretend weaknesses are strengths
+
+---
+
+### Spelling (Non-Negotiable)
+
+Use British spelling in all code comments, documentation, and output:
+
+- `-ise` not `-ize` (organisation, normalise, initialise)
+- `-our` not `-or` (colour, behaviour, favour)
+- `-re` not `-er` (centre, metre)
+- `-ogue` not `-og` (catalogue, dialogue)
+- Double consonants: travelled, cancelled, modelling
+
+If unsure: https://www.oxfordlearnersdictionaries.com
+
+---
+
+## Claude Code Behaviour
+
+### Code Editing
+
+**Do not edit files directly unless explicitly asked.** Instead:
+
+1. Show the proposed code
+2. Wait for me to make the edit
+
+This applies to all file modifications. When I say "do it" or "make the change", then edit directly.
+
+### Plans
+
+When asked to plan work:
+
+- Extremely concise; sacrifice grammar for brevity
+- No preamble or context I already know
+- End with unresolved questions (if any)
+
+### Asking vs Proceeding
+
+- **Ambiguous requirements:** Ask first
+- **Clear intent, unclear implementation:** Make a reasonable call, flag assumptions
+- **Refactoring adjacent code:** Stay surgical unless asked to clean up
+- **Multiple valid approaches:** Present options briefly, recommend one
+
+### Verification
+
+Never commit code that hasn't been verified:
+
+- New features: test manually or run automated tests
+- Bug fixes: verify the fix resolves the issue
+- Refactors: ensure behaviour unchanged
+
+---
+
+
+## Code Conventions
+
+### Paradigm
+
+Pragmatic over ideological. OOP when it fits, functional when it fits. Clear structure matters more than paradigm purity.
+
+### Naming
+
+```typescript
+// ✅ Clear, semantic names
+const authenticatedUserId = await getAuthenticatedUser();
+const monthlyRevenue = calculateMonthlyRevenue(transactions);
+
+// ❌ Cryptic abbreviations
+const authUsrId = await getAuth();
+const revM = calcMR(txs);
+```
+
+- Files: `kebab-case.ts`, React components: `PascalCase.tsx`
+- Variables/functions: descriptive over brief
+
+### TypeScript Standards
+
+- Strict mode enabled
+- Interfaces over types for object shapes
+- Avoid `any` — use `unknown` when type is uncertain
+- Explicit return types on exported functions
+- Leverage discriminated unions
+
+### Code Style
+
+- Files use **tabs for indentation** (not spaces)
+- When editing: preserve exact tab characters, never convert to spaces
+- Always use Edit tool for modifications, never sed/awk
+
+### Testing
+
+Testing is a known weakness. No systematic TDD, no comprehensive coverage culture.
+
+When tests exist:
+
+- **File naming:** `module-name.test.ts` alongside source
+- **Fixtures pattern:** Test data in `tests/fixtures/<module>.ts` as named exports
+- **Import style:** `import * as fixtures from '../fixtures/<module>'`
+- Integration tests for critical paths preferred over exhaustive unit coverage
+
+---
+
+## Git Workflow
+
+### Commit Style
+
+Conventional Commits: `type(scope): description`
+
+**Types:** `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+
+Detailed commit bodies when context needed. Good git history is documentation.
+
+### Commit Granularity
+
+- Commit frequently with clear, granular changes
+- Each commit should be a single logical unit
+- More atomic commits = better history
+
+### Breaking Change Detection
+
+**Always flag potential breaking changes**, even when I'm handling commits. Warn when changes might need `BREAKING CHANGE:` footer or `!` indicator:
+
+- Removed/renamed exports (functions, types, components)
+- Changed function signatures
+- Modified return types or response shapes
+- Database schema changes
+- API endpoint changes
+- Environment variable additions/changes
+- Configuration format changes
+
+Format: `⚠️ Breaking change — consider feat!: or BREAKING CHANGE: footer`
+
+### Branch Naming
+
+`<prefix>/<short-description>` — all lowercase, hyphens between words, imperative mood
+
+**Prefixes:** `feat/`, `fix/`, `enhance/`, `refactor/`, `test/`, `docs/`, `config/`
+
+Branches represent minimal tangible improvements. When in doubt, go smaller.
+
+---
+
+## Security Defaults
+
+- Never commit secrets (environment variables only)
+- Row-Level Security for multi-tenant data
+- Input validation at boundaries (Zod, etc.)
+- HTTPS only, secure cookies
+- Transactions for multi-step operations
+- Avoid N+1 queries
+
+---
+
+## Documentation
+
+- **Mermaid diagrams** for architecture and data flow
+- **Inline comments** sparingly — code should explain itself
+- **ADRs** for significant technical choices
+- Headers: `##` main, `###` subsections
+- Code blocks: always specify language
+
+---
+
+## Project Overrides
+
+Project-level configs take precedence:
+
+- `.claude/CLAUDE.md` or `CLAUDE.md` in project root
+- Nested configs for subsystems (e.g., `frontend/CLAUDE.md`)
+- Project settings override everything here
