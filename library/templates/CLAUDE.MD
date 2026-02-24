@@ -54,17 +54,26 @@
 
 # After
 
-C58
+# C58
+
 A backend service connecting to a headless CMS for a non-technical client's event business. Optimised for rapid prototyping with minimal data complexity.
 
-Stack
-Next.js + React + TypeScript + Tailwind CSS + Sanity (headless CMS)
-Package manager: npm
-Database: Sanity (CMS as data layer — no separate database for now)
-Testing: Jest
+---
 
-Key Commands
-bash# Install
+## Stack
+
+Next.js + React + TypeScript + Tailwind CSS + Sanity (headless CMS)
+
+**Package manager:** npm
+**Database:** Sanity (CMS as data layer — no separate database for now)
+**Testing:** Jest
+
+---
+
+## Key Commands
+
+```bash
+# Install
 npm install
 
 # Dev
@@ -75,17 +84,22 @@ npm test
 
 # Build
 npm run build
+```
 
-Project Structure
+---
 
-Fill in once scaffold is created.
+## Project Structure
 
+> Fill in once scaffold is created.
 
-Conventions
+---
 
-Add coding conventions, naming patterns, and architectural decisions here as the project evolves.
+## Conventions
 
+> Add coding conventions, naming patterns, and architectural decisions here as the project evolves.
 
-Active Hooks
+---
 
-Document any git hooks or automation active in this repo.
+## Active Hooks
+
+> Document any git hooks or automation active in this repo.

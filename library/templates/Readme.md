@@ -16,14 +16,17 @@
 # After
 
 # C58
+
 A backend service connecting to a headless CMS for a non-technical client's event business. Optimised for rapid prototyping with minimal data complexity.
 
 ## Getting Started
 
-bashnpm install
+```bash
+npm install
 npm run dev
+```
 
 ## Documentation
 
-MVP Roadmap
-Architecture Decisions
+- [MVP Roadmap](roadmaps/mvp.md)
+- [Architecture Decisions](adrs/)
